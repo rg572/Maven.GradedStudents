@@ -47,4 +47,8 @@ public class Student {
     public Integer getNumberOfExamsTaken(){
         return examScores.size();
     }
+
+    public void addExamScore(double examScore){
+        examScores.add(examScore);
+    }
 }
