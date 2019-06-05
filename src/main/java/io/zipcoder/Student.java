@@ -38,8 +38,9 @@ public class Student {
     public String getExamScores(){
         StringBuilder sbuild = new StringBuilder();
         DecimalFormat df = new DecimalFormat("#.##");
+        sbuild.append("Exam Scores:\n");
         for(int i = 0; i < examScores.size(); i++){
-            sbuild.append(String.format("Exam %d -> %s\n",i+1,df.format(examScores.get(i))));
+            sbuild.append(String.format("    Exam %d -> %s\n",i+1,df.format(examScores.get(i))));
         }
         return sbuild.toString();
     }
@@ -69,5 +70,12 @@ public class Student {
             sum += score;
         }
         return sum/examScores.size();
+    }
+
+    @Override
+    public String toString(){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return String.format("Student Name: %s %s\n> Average Score: %s\n> %s", firstName, lastName,
+                df.format(getAverageExamScore()), getExamScores());
     }
 }

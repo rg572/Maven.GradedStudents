@@ -38,7 +38,7 @@ public class StudentTest {
     public void getExamScoresTest1(){
         Double[] scores = {100d, 90d, 93d};
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "Exam 1 -> 100\nExam 2 -> 90\nExam 3 -> 93\n";
+        String expected = "Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 90\n    Exam 3 -> 93\n";
 
         String actual = s.getExamScores();
 
@@ -49,7 +49,7 @@ public class StudentTest {
     public void getExamScoresTest2(){
         Double[] scores = {100d, 90.4, 89.99, 93.457, 93.454};
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "Exam 1 -> 100\nExam 2 -> 90.4\nExam 3 -> 89.99\nExam 4 -> 93.46\nExam 5 -> 93.45\n";
+        String expected = "Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 90.4\n    Exam 3 -> 89.99\n    Exam 4 -> 93.46\n    Exam 5 -> 93.45\n";
 
         String actual = s.getExamScores();
 
@@ -60,7 +60,7 @@ public class StudentTest {
     public void getExamScoreTest3(){
         Double[] scores = {};
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "";
+        String expected = "Exam Scores:\n";
 
         String actual = s.getExamScores();
 
@@ -71,7 +71,7 @@ public class StudentTest {
     public void getExamScoreTest4(){
         Double[] scores = null;
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "";
+        String expected = "Exam Scores:\n";
 
         String actual = s.getExamScores();
 
@@ -124,7 +124,7 @@ public class StudentTest {
     @Test
     public void addExamScoreTest2(){
         Student s = new Student("Maria Theresa", "Hapsburg", null);
-        String expected = "Exam 1 -> 100\n";
+        String expected = "Exam Scores:\n    Exam 1 -> 100\n";
 
         s.addExamScore(100d);
         String actual = s.getExamScores();
@@ -136,7 +136,7 @@ public class StudentTest {
     public void addExamScoreTest3(){
         Double[] scores = {100d, 90d, 93d};
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "Exam 1 -> 100\nExam 2 -> 90\nExam 3 -> 93\nExam 4 -> 89.5\n";
+        String expected = "Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 90\n    Exam 3 -> 93\n    Exam 4 -> 89.5\n";
 
         s.addExamScore(89.5);
         String actual = s.getExamScores();
@@ -162,7 +162,7 @@ public class StudentTest {
     public void setExamScoreTest3() throws InvalidExamNumberException{
         Double[] scores = {100d, 90d, 93d};
         Student s = new Student("Maria Theresa", "Hapsburg", scores);
-        String expected = "Exam 1 -> 100\nExam 2 -> 99.9\nExam 3 -> 93\n";
+        String expected = "Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 99.9\n    Exam 3 -> 93\n";
 
         s.setExamScore(2, 99.9);
         String actual = s.getExamScores();
@@ -200,6 +200,17 @@ public class StudentTest {
         Double actual = s.getAverageExamScore();
 
         Assert.assertEquals(expected, actual, 0.00000001);
+    }
+
+    @Test
+    public void toStringTest1(){
+        Double[] scores = {100.0, 150.0, 250.0, 0.0};
+        Student s = new Student("Leon","Hunter", scores);
+        String expected = "Student Name: Leon Hunter\n> Average Score: 125\n> Exam Scores:\n    Exam 1 -> 100\n    Exam 2 -> 150\n    Exam 3 -> 250\n    Exam 4 -> 0\n";
+
+        String actual = s.toString();
+
+        Assert.assertEquals(expected, actual);
     }
 
 }
