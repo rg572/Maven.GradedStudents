@@ -144,4 +144,30 @@ public class StudentTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test(expected = InvalidExamNumberException.class)
+    public void setExamScoreTest1() throws InvalidExamNumberException{
+        Double[] scores = {100d, 90d, 93d};
+        Student s = new Student("Maria Theresa", "Hapsburg", scores);
+        s.setExamScore(4, 99d);
+    }
+
+    @Test(expected = InvalidExamNumberException.class)
+    public void setExamScoreTest2() throws InvalidExamNumberException{
+        Double[] scores = {100d, 90d, 93d};
+        Student s = new Student("Maria Theresa", "Hapsburg", scores);
+        s.setExamScore(0, 99d);
+    }
+
+    @Test
+    public void setExamScoreTest3() throws InvalidExamNumberException{
+        Double[] scores = {100d, 90d, 93d};
+        Student s = new Student("Maria Theresa", "Hapsburg", scores);
+        String expected = "Exam 1 -> 100\nExam 2 -> 99.9\nExam 3 -> 93\n";
+
+        s.setExamScore(2, 99.9);
+        String actual = s.getExamScores();
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }

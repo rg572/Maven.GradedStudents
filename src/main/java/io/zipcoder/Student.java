@@ -51,4 +51,11 @@ public class Student {
     public void addExamScore(double examScore){
         examScores.add(examScore);
     }
+
+    public void setExamScore(int examNumber, double newScore) throws InvalidExamNumberException{
+        if(examNumber < 1 || examNumber > examScores.size()){
+            throw new InvalidExamNumberException();
+        }
+        examScores.set(examNumber - 1, newScore);
+    }
 }
