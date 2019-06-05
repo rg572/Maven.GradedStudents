@@ -58,4 +58,16 @@ public class Student {
         }
         examScores.set(examNumber - 1, newScore);
     }
+
+    public Double getAverageExamScore(){
+        if(examScores.size() == 0){
+            return Double.NaN;
+        }
+
+        Double sum = 0d;
+        for(Double score : examScores){
+            sum += score;
+        }
+        return sum/examScores.size();
+    }
 }

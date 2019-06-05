@@ -170,4 +170,36 @@ public class StudentTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void getAverageExamScoreTest1(){
+        Student s = new Student("Maria Theresa", "Hapsburg", null);
+        Double expected = Double.NaN;
+
+        Double actual = s.getAverageExamScore();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getAverageExamScoreTest2(){
+        Double[] scores = {100d, 90d, 93d};
+        Student s = new Student("Maria Theresa", "Hapsburg", scores);
+        Double expected = 94.3333333333;
+
+        Double actual = s.getAverageExamScore();
+
+        Assert.assertEquals(expected, actual, 0.000000001);
+    }
+
+    @Test
+    public void getAverageExamScore3(){
+        Double[] scores = {100d, 90.4, 89.99, 93.457, 93.454};
+        Student s = new Student("Maria Theresa", "Hapsburg", scores);
+        Double expected = 93.4602;
+
+        Double actual = s.getAverageExamScore();
+
+        Assert.assertEquals(expected, actual, 0.00000001);
+    }
+
 }
