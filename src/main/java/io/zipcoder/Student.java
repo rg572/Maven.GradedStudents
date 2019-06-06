@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Student {
+public class Student implements Comparable<Student>{
 
     private String firstName;
     private String lastName;
@@ -62,7 +62,7 @@ public class Student {
 
     public Double getAverageExamScore(){
         if(examScores.size() == 0){
-            return Double.NaN;
+            return 0d;
         }
 
         Double sum = 0d;
@@ -78,4 +78,19 @@ public class Student {
         return String.format("Student Name: %s %s\n> Average Score: %s\n> %s", firstName, lastName,
                 df.format(getAverageExamScore()), getExamScores());
     }
+
+    @Override
+    public int compareTo(Student other) {
+        if(getAverageExamScore().compareTo(other.getAverageExamScore()) != 0 ){
+            return getAverageExamScore().compareTo(other.getAverageExamScore());
+        }
+        else if(lastName.compareTo(other.getLastName()) != 0){
+            return lastName.compareTo(other.getLastName());
+        }
+        else{
+            return firstName.compareTo(other.getFirstName());
+        }
+    }
+
+
 }

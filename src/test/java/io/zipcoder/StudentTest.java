@@ -173,7 +173,7 @@ public class StudentTest {
     @Test
     public void getAverageExamScoreTest1(){
         Student s = new Student("Maria Theresa", "Hapsburg", null);
-        Double expected = Double.NaN;
+        Double expected = 0d;
 
         Double actual = s.getAverageExamScore();
 
@@ -211,6 +211,46 @@ public class StudentTest {
         String actual = s.toString();
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void compareToTest1(){
+        Double[] scores1 = {100.0, 150.0, 250.0, 0.0};
+        Student s1 = new Student("Leon","Hunter", scores1);
+
+        Double[] scores2 = {100d, 90.4, 89.99, 93.457, 93.454};
+        Student s2 = new Student("Maria Theresa", "Hapsburg", scores2);
+
+        int actual = s2.compareTo(s1);
+
+        Assert.assertTrue( actual < 0);
+    }
+
+    @Test
+    public void compareToTest2(){
+        Double[] scores1 = {100.0, 150.0, 250.0, 0.0};
+        Student s1 = new Student("Leon","Hunter", scores1);
+
+        //Double[] scores2 = {100d, 90.4, 89.99, 93.457, 93.454};
+        Student s2 = new Student("Maria Theresa", "Hapsburg", scores1);
+
+        int actual = s1.compareTo(s2);
+
+
+        Assert.assertTrue( actual > 0);
+    }
+
+    @Test
+    public void compareToTest3(){
+        Double[] scores1 = {100.0, 150.0, 250.0, 0.0};
+        Student s1 = new Student("Leon","Hunter", scores1);
+
+        //Double[] scores2 = {100d, 90.4, 89.99, 93.457, 93.454};
+        Student s2 = new Student("Leon", "Hunter", scores1);
+
+        int actual = s2.compareTo(s1);
+
+        Assert.assertTrue( actual == 0);
     }
 
 }
